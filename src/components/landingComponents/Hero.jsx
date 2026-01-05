@@ -1,5 +1,6 @@
 import React from 'react'
 import CustomButton from '../common/CustomButton'
+import { Button } from '../ui/button'
 
 const Hero = () => {
   return (
@@ -11,6 +12,7 @@ const Hero = () => {
             vel eveniet temporibus eaque esse pariatur tempora cupiditate, perferendis fugit?
         </p>
         <CustomButton text="Get Started"/>
+        <Button variant='secondary'>Hello</Button>
         </div>
 
         {/*background image*/}
