@@ -5,8 +5,9 @@ const Navbar = () => {
   return (
     <header className='flex justify-between items-center px-20 py-4'>
         {/* left navbar */}
-        <div>
-            <h2 className='text-4xl font-bold'>WanderWise</h2>
+        <div className='flex items-center gap-4'>
+            <img src="/logo.png" alt="WanderWise Logo" className='w-12 h-12 rounded-full'/>
+            <h2 className='text-3xl font-bold'>WanderWise</h2>
         </div>
 
 

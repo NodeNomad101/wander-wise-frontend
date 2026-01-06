@@ -1,12 +1,12 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
+import { Link } from "react-router-dom" // Uncomment if using React Router
 
 import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -15,38 +15,30 @@ import {
 import { Input } from "@/components/ui/input"
 
 const formSchema = z.object({
-  email: z.string().min(5, {
-    message: "Email must be at least 5 characters.",
+  email: z.string().email({
+    message: "Please enter a valid email address.",
+  }).min(1, {
+    message: "Email is required.",
   }),
 
-
   password: z.string().min(8, {
-    message: "Password must be between 8 and 20 characters.",
-  }).max(20),
-
-
-  confirmPassword: z.string().min(8, {
-    message: "Password must be between 8 and 20 characters.",
-  }).max(20),
-}).refine((data) => data.password === data.confirmPassword, {
-      message: "Password do not match.",
-      path: ["confirmPassword"],
+    message: "Password must be at least 8 characters.",
+  }).max(20, {
+    message: "Password must be no more than 20 characters.",
+  }),
 })
 
-export default function Register() {
-  // ...
-
-    const form = useForm({
+export default function Login() {
+  const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: "",
       password: "",
-      confirmPassword: "",
     },
-  });
+  })
 
   const onSubmit = (data) => {
-    console.log(data);
+    console.log(data)
   }
 
   return (
@@ -80,21 +72,17 @@ export default function Register() {
           )}
         />
 
-        <FormField
-          control={form.control}
-          name="confirmPassword"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Confirm Password</FormLabel>
-              <FormControl>
-                <Input placeholder="*********" type="password" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        <Button type="submit" className="w-full">
+          Login
+        </Button>
 
-        <Button type="submit">Submit</Button>
+        {/* Sign Up Link */}
+        <div className="text-center text-sm">
+          <span className="text-gray-600">Don't have an account? </span>
+          <Link to="/register" className="font-medium text-blue-600 hover:text-blue-500 underline">
+            Sign up
+          </Link>
+        </div>
       </form>
     </Form>
   )
