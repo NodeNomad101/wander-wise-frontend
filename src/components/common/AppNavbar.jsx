@@ -1,9 +1,11 @@
 import React from 'react'
 import CustomButton from '../common/CustomButton'
+import useAuth from '../../hooks/useAuth'
 
-const Navbar = () => {
+const AppNavbar = () => {
+    const { logout } = useAuth() // Placeholder for actual logout logic
   return (
-    <header className='flex justify-between items-center px-20 py-4'>
+    <header className='flex justify-between items-center px-20 py-5 border-b border-gray-200 shadow-md'>  
         {/* left navbar */}
         <div className='flex items-center gap-4'>
             <img src="/logo.png" alt="WanderWise Logo" className='w-12 h-12 rounded-full'/>
@@ -14,15 +16,15 @@ const Navbar = () => {
         {/* right navbar */}
         <div className='flex items-center gap-10'>
             <nav className='flex items-center gap-6 [&>a]:text-lg [&>a]:font-medium [&>a]:hover:text-blue-600'>
-                <a href="#">Features</a>
-                <a href="#">About</a>
-                <a href='#'>Famous Trips</a>
-                <a href="#">Contact</a>
+                <a href="/dashboard">Dashboard</a>
+                <a href="/trips">Trips</a>
+                <a href="/itineraries">Itineraries</a>
+                <a href='/baggage'>Baggage</a>
 
             </nav>
             <div>
-                <a href='/signin'><CustomButton text="Sign in" />
-                </a>
+                
+                <CustomButton text="Log out" onClick={logout} />
                 
             </div>
         </div>
@@ -30,4 +32,4 @@ const Navbar = () => {
   )
 }
 
-export default Navbar
+export default AppNavbar
